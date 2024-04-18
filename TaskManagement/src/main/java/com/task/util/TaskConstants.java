@@ -8,4 +8,5 @@ public interface TaskConstants {
     Integer INTERNAL_SERVER_ERROR_CODE = 500;
 
     String RECORD_NOT_FOUND = "Record Not Found";
+    String DUPLICATE_RECORD = "Duplicate Record!!";
 }
