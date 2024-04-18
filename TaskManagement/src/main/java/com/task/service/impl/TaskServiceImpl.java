@@ -29,7 +29,7 @@ public class TaskServiceImpl implements TaskService {
         log.info("TaskServiceImpl > saveTask() >> Initiated!!");
         Task checkRecordExist = taskRepository.findByTitle(taskVO.getTitle());
         if (!ObjectUtils.isEmpty(checkRecordExist)) {
-            throw new DuplicateRecordException(TaskConstants.RECORD_NOT_FOUND);
+            throw new DuplicateRecordException(TaskConstants.DUPLICATE_RECORD);
         }
         try {
             Task task = Task.builder().title(taskVO.getTitle()).description(taskVO.getDescription()).status(taskVO.getStatus()).build();
