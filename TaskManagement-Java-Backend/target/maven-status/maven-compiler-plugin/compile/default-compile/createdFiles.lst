@@ -1,0 +1,9 @@
+com\task\service\impl\TaskServiceImpl.class
+com\task\service\TaskService.class
+com\task\TaskManagementApplication.class
+com\task\controller\TaskController.class
+com\task\model\Task.class
+com\task\repository\TaskRepository.class
+com\task\util\TaskVO$TaskVOBuilder.class
+com\task\util\TaskVO.class
+com\task\model\Task$TaskBuilder.class
