@@ -20,6 +20,7 @@ public class TaskController {
 
     /**
      * This API is use to create a new Task
+     * check application.properties for database used postgres
      *
      * @param task: this parameter Task is any object which have 3 fields Title, Description and Status
      * @return
