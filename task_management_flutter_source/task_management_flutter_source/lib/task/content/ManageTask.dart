@@ -55,14 +55,18 @@ class ManageTask extends StatelessWidget {
                         style: GoogleFonts.roboto(fontSize: 18),
                       )),
                   Padding(
-                    padding: EdgeInsets.only(left: 130, top: 5),
+                    padding: EdgeInsets.only(left: 70, top: 5),
                     child:
-                        FilledButton(onPressed: () {}, child: Text('DELETE')),
+                        FilledButton(onPressed: () {
+                          //call deleteTask API
+                        }, child: Text('DeleteTask')),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5),
                     child:
-                        FilledButton(onPressed: () {}, child: Text('UPDATE')),
+                        FilledButton(onPressed: () {
+                          //call updateTask API
+                        }, child: Text('UpdateTask')),
                   ),
                 ],
               )
