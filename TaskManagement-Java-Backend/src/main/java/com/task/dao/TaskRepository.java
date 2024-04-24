@@ -1,4 +1,4 @@
-package com.task.repository;
+package com.task.dao;
 
 import com.task.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
