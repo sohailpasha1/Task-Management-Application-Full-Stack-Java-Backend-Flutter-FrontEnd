@@ -4,7 +4,7 @@ import com.task.exception.DuplicateRecordException;
 import com.task.exception.InvalidRequestPayloadException;
 import com.task.exception.RecordNotFoundException;
 import com.task.model.Task;
-import com.task.repository.TaskRepository;
+import com.task.dao.TaskRepository;
 import com.task.service.TaskService;
 import com.task.util.ResponseBean;
 import com.task.util.ResponseUtil;
@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService {
         }
         try {
             Task task = Task.builder().title(taskVO.getTitle()).description(taskVO.getDescription()).status(taskVO.getStatus()).build();
-            //Saving the Task to the DB
+            //Saving the Task to the DataBase
             taskRepository.save(task);
             log.info("TaskServiceImpl > saveTask() >> Completed!!");
             return ResponseUtil.getSuccessResponse("Successfully saved Task");
@@ -72,6 +72,7 @@ public class TaskServiceImpl implements TaskService {
     public ResponseEntity<ResponseBean> getAllTask() {
         log.info("TaskServiceImpl > getAllTask() >> Initiated!!");
         try {
+            //fetching all the task from database
             List<Task> taskList = taskRepository.findAll();
             log.info("TaskServiceImpl > getAllTask() >> Completed!!");
             return ResponseUtil.getSuccessResponse(taskList);
@@ -92,6 +93,7 @@ public class TaskServiceImpl implements TaskService {
     public ResponseEntity<ResponseBean> getTaskByTitle(String title) throws RecordNotFoundException {
         try {
             log.info("TaskServiceImpl > getTaskByTitle() >> Initiated!!");
+            //fetching taskByTitle from database
             Task task = taskRepository.findByTitle(title);
             if (ObjectUtils.isEmpty(task)) {
                 throw new RecordNotFoundException(TaskConstants.RECORD_NOT_FOUND);
@@ -119,6 +121,7 @@ public class TaskServiceImpl implements TaskService {
             throw new InvalidRequestPayloadException(TaskConstants.STATUS_SUPPORTED);
         }
         try {
+             //fetching taskByStatus from database
             List<Task> task = taskRepository.findAllByStatus(status);
             if (CollectionUtils.isEmpty(task)) {
                 throw new RecordNotFoundException(TaskConstants.RECORD_NOT_FOUND);
@@ -149,6 +152,7 @@ public class TaskServiceImpl implements TaskService {
         if (!StringUtils.hasText(taskVO.getTitle())) {
             throw new InvalidRequestPayloadException("Title can't be empty!!");
         }
+         //fetching taskByTitle from database
         Task checkRecordExist = taskRepository.findByTitle(taskVO.getTitle());
         if (ObjectUtils.isEmpty(checkRecordExist)) {
             throw new RecordNotFoundException(TaskConstants.RECORD_NOT_FOUND);
@@ -156,6 +160,7 @@ public class TaskServiceImpl implements TaskService {
         try {
             checkRecordExist.setStatus(taskVO.getStatus());
             checkRecordExist.setDescription(taskVO.getDescription());
+             //updating the task to database
             taskRepository.save(checkRecordExist);
             log.info("TaskServiceImpl > updateTask() >> Completed!!");
             return ResponseUtil.getSuccessResponse("Task Updated Successfully");
@@ -180,6 +185,7 @@ public class TaskServiceImpl implements TaskService {
             throw new RecordNotFoundException(TaskConstants.RECORD_NOT_FOUND);
         }
         try {
+             //deleting the taskByTitle from database
             taskRepository.delete(checkRecordExist);
             log.info("TaskServiceImpl > deleteTaskByTitle() >> Initiated!!");
             return ResponseUtil.getSuccessResponse("Deleted Successfully");
