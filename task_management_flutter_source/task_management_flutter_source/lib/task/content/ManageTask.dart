@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_management_flutter/task/model/TaskModel.dart';
 
+// This call handles getAllTask, UpdateTask, DeleteTask, SortTaskByStatus APIs
 class ManageTask extends StatelessWidget {
   final TaskModel model;
 
